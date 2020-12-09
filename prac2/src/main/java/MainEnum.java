@@ -1,5 +1,7 @@
 //https://www.programiz.com/java-programming/enums
 
+import java.awt.*;
+
 //enum
 public class MainEnum {
 
@@ -40,7 +42,7 @@ public class MainEnum {
 
     }
 }
-
+// Enum types can have only private constructors.
  enum check{
     ONE("omne"),
     TWO("sss");
@@ -84,5 +86,42 @@ enum Size{
         System.out.println("The size of the pizza is " + Size.SMALL.getSize());
         System.out.println(check.ONE);
 
+    }
+}
+enum Enums
+{
+    A("one"), B("two"), C("three");
+
+    private String name;
+    private String name2;
+
+    private Enums(String val)
+    {
+       this.name2=val;
+        System.out.println(1);
+    }
+
+    public static void main(String[] args) {
+        Enums take1=Enums.A;
+        System.out.println(take1.name2);
+    }
+}
+
+class MainClass
+{
+    private  int test;
+    static {
+        System.out.println("something in the way");
+    }
+
+    {
+       this.test=233;
+    }
+    public static void main(String[] args)
+    {
+        Enum en = Enums.B;
+
+        MainClass mainClass=new MainClass();
+        System.out.println(mainClass.test);
     }
 }

@@ -11,4 +11,9 @@ interface check23{
 
 class  Oneee implements  check23{
 
+    public static void main(String[] args) {
+        Oneee oneee=new Oneee();
+        System.out.println(oneee.see());
+    }
+
 }
