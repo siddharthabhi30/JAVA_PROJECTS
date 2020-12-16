@@ -129,17 +129,21 @@ class  Orange{
         for (int i = 0; i < unuseed.length; i++) {
             hash_Set.add(unuseed[i]);
         }
+        System.out.println("t    "+hash_Set.size());
         int index=0;
         for(File file : filesList) {
 
             String[] parts = file.getName().split("\\.");
             names.add("'"+parts[0]+"'");
             currentFile=file.getName();
-            System.out.println(file.getAbsolutePath());
+            //System.out.println(file.getAbsolutePath());
             //ListFilesRecursive("C:/Users/siddh/Desktop/code/LNT_PROJECTS/LNTProj/src/test/java/com/mtvi");
 
             if(hash_Set.contains(index)){
+                //for printing the file name
+               // System.out.println(file.getName());
 
+                //for changing names of the files
                 File oldName =
                         new File(file.getAbsolutePath());
                 File newName =

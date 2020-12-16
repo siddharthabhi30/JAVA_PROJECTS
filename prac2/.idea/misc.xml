@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../loggin/pom.xml" />
+        <option value="$PROJECT_DIR$/../Resilience$j/Relience4j/pom.xml" />
       </list>
     </option>
   </component>
