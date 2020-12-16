@@ -10,7 +10,7 @@ public class Junit {
         System.out.println("**--- Test method1 executed ---**");
         String a;
         a="dd";
-        a=null;
+
         assertNotNull(a);
     }
 
@@ -20,7 +20,7 @@ public class Junit {
         //lambda fucntion works only when assertion is true
         assumingThat(4==4,
                 () -> {
-                    assertEquals(120, 10);
+                    assertEquals(10, 10);
                     System.out.println("perform below assertions only on the test env");
                 });
     }
@@ -31,4 +31,24 @@ public class Junit {
     }
 
 
+}
+
+//all methods will be executed
+@Nested
+class InnerClass {
+
+    @BeforeEach
+    void beforeEach() {
+        System.out.println("**--- InnerClass :: beforeEach :: Executed before each test method ---**");
+    }
+
+    @AfterEach
+    void afterEach() {
+        System.out.println("**--- InnerClass :: afterEach :: Executed after each test method ---**");
+    }
+
+    @Test
+    void testMethod1() {
+        System.out.println("**--- InnerClass :: testMethod1 :: Executed test method1 ---**");
+    }
 }
