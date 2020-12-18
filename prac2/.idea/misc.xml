@@ -7,6 +7,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../loggin/pom.xml" />
         <option value="$PROJECT_DIR$/../Resilience$j/Relience4j/pom.xml" />
+        <option value="$PROJECT_DIR$/../Resilience$j/Resilience2/gs-cloud-circuit-breaker/complete/pom.xml" />
+        <option value="$PROJECT_DIR$/../Resilience$j/Resilience4j2/pom.xml" />
       </list>
     </option>
   </component>

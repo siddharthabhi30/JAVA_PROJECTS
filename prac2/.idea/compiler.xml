@@ -8,6 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Relience4j" />
         <module name="prac2" />
+        <module name="draft-gs-template" />
+        <module name="Resilience4j2" />
         <module name="loggin" />
       </profile>
     </annotationProcessing>
@@ -15,6 +17,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Relience4j" options="-parameters" />
+      <module name="Resilience4j2" options="-parameters" />
+      <module name="draft-gs-template" options="-parameters" />
       <module name="loggin" options="-parameters" />
     </option>
   </component>
