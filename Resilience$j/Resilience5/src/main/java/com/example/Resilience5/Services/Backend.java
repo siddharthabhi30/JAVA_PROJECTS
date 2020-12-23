@@ -12,8 +12,13 @@ public class Backend {
     @Autowired
     private RestTemplate restTemplate;
 
-    public static String failure() {
+    public static String testFunc() {
 
         throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "This is a remote exception");
+    }
+
+    public static  int recovery(Throwable t){
+        System.out.println("from fallback");
+        return 99;
     }
 }

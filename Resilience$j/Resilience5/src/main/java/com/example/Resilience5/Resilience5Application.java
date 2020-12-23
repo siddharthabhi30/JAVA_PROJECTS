@@ -34,15 +34,14 @@ public class Resilience5Application {
 	@Bean
 	public  CircuitBreaker getCirtcuitBreaker(){
 		CircuitBreakerConfig circuitBreakerConfig = CircuitBreakerConfig.custom()
-				.failureRateThreshold(4)
-				.waitDurationInOpenState(Duration.ofMillis(500))
-
-				.minimumNumberOfCalls(5)
-				.permittedNumberOfCallsInHalfOpenState(10)
-				.slidingWindowSize(2)
+				.slidingWindow(10,5, CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
 				.automaticTransitionFromOpenToHalfOpenEnabled(true)
-				.recordExceptions(IOException.class, TimeoutException.class)
+				.failureRateThreshold(50)
+				.permittedNumberOfCallsInHalfOpenState(4)
+				.waitDurationInOpenState(Duration.ofSeconds(1))
 				.build();
+
+
 
 		CircuitBreakerRegistry circuitBreakerRegistry =
 				CircuitBreakerRegistry.of(circuitBreakerConfig);

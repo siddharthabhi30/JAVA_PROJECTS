@@ -64,8 +64,8 @@ public class Resilience {
 
     public static Retry lendRetry(){
         RetryConfig config = RetryConfig.custom()
-                .maxAttempts(1)
-                .waitDuration(Duration.ofMillis(4000))
+                .maxAttempts(2)
+                .waitDuration(Duration.ofMillis(1000))
                 .build();
 
 // Create a RetryRegistry with a custom global configuration
