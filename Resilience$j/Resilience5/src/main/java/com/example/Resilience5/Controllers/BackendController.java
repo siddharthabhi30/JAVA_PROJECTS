@@ -5,6 +5,7 @@ import com.example.Resilience5.Services.Backend;
 import com.example.Resilience5.Services.quoteServicew;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.decorators.Decorators;
+import io.github.resilience4j.ratelimiter.RateLimiter;
 import io.github.resilience4j.retry.Retry;
 import io.vavr.control.Try;
 
@@ -26,7 +27,7 @@ public class BackendController {
     @Autowired
     private final CircuitBreaker circuitBreaker;
 
-private quoteServicew quoteservicew=new quoteServicew();
+    private quoteServicew quoteservicew=new quoteServicew();
 
 
     private final ScheduledExecutorService scheduledExecutorService;
@@ -37,15 +38,20 @@ private quoteServicew quoteservicew=new quoteServicew();
 
     @Autowired
    private final Retry retry;
-    public BackendController(CircuitBreaker circuitBreaker, Retry retry) {
+
+    @Autowired
+    private RateLimiter rateLimiter;
+
+    public BackendController(CircuitBreaker circuitBreaker, Retry retry,RateLimiter rateLimiter) {
 
         this.circuitBreaker = circuitBreaker;
         this.retry = retry;
         this.scheduledExecutorService =  Executors.newScheduledThreadPool(3);
         this.supplier=quoteservicew::getQuote;
+        this.rateLimiter=rateLimiter;
         this.decoratedSupplier=Decorators.ofSupplier(supplier)
                 .withCircuitBreaker(this.circuitBreaker)
-
+                .withRateLimiter(rateLimiter)
                 .decorate();
 
     }
@@ -54,30 +60,9 @@ private quoteServicew quoteservicew=new quoteServicew();
     public void failure(){
          execute2();
     }
-
-    private <T> T execute(Supplier<T> supplier){
-        return Decorators.ofSupplier(supplier)
-                .withCircuitBreaker(circuitBreaker)
-                .withRetry(retry)
-                .get();
-    }
-
-
     private <Integer> void execute2(){
-        // Supplier<Integer> sp= CircuitBreaker.decorateSupplier(circuitBreaker,quoteServicew::getQuote);
-
       Try.ofSupplier(decoratedSupplier).recover(quoteservicew::getQuoteFallback);
     }
-
-    @GetMapping("/loop")
-    public void loop(){
-        for (int i = 0; i < 100; i++) {
-            failure();
-        }
-    }
-
-
-
 
 
 }

@@ -23,6 +23,7 @@ public class Controller {
 
 
     @RequestMapping("/greet2")
+
     public String greet2(){
         return "hello22";
     }

@@ -3,6 +3,9 @@ package com.example.Resilience5;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
+import io.github.resilience4j.ratelimiter.RateLimiter;
+import io.github.resilience4j.ratelimiter.RateLimiterConfig;
+import io.github.resilience4j.ratelimiter.RateLimiterRegistry;
 import io.github.resilience4j.retry.Retry;
 import io.github.resilience4j.retry.RetryConfig;
 import io.github.resilience4j.retry.RetryRegistry;
@@ -38,7 +41,7 @@ public class Resilience5Application {
 				.automaticTransitionFromOpenToHalfOpenEnabled(true)
 				.failureRateThreshold(50)
 				.permittedNumberOfCallsInHalfOpenState(4)
-				.waitDurationInOpenState(Duration.ofSeconds(1))
+				.waitDurationInOpenState(Duration.ofSeconds(10))
 				.build();
 
 
@@ -66,6 +69,21 @@ public class Resilience5Application {
 // Retry will be backed by the default config
 		Retry retryWithDefaultConfig = registry.retry("name1");
 		return retryWithDefaultConfig;
+
+	}
+
+	@Bean
+	public static RateLimiter rateLimiter(){
+		RateLimiterConfig config = RateLimiterConfig.custom()
+				.limitRefreshPeriod(Duration.ofSeconds(1))
+				.limitForPeriod(10)
+				.timeoutDuration(Duration.ofMillis(25))
+				.build();
+		RateLimiterRegistry rateLimiterRegistry = RateLimiterRegistry.of(config);
+
+		RateLimiter rateLimiterWithCustomConfig = rateLimiterRegistry
+				.rateLimiter("name2", config);
+		return  rateLimiterWithCustomConfig;
 
 	}
 

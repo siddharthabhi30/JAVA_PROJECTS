@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Relience4j" />
         <module name="prac2" />
-        <module name="draft-gs-template" />
         <module name="Resilience4j2" />
         <module name="loggin" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="draft-gs-template" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
