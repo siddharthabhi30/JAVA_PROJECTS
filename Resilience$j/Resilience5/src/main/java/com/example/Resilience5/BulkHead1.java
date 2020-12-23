@@ -33,16 +33,14 @@ public  class BulkHead1 {
     }
 
 
-    public static void main(String[] args) {
+    public static void fillThread() {
 
         RestTemplate restTemplate=new RestTemplate();
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 1000000; i++) {
 
            String ans2=CircuitBreaker5.print();
-            if(i>=8000){
-                String ans=CircuitBreaker5.print2();
-            }
+
         }
     }
 

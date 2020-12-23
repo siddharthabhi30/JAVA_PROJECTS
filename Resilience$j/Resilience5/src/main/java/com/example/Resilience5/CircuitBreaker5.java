@@ -27,7 +27,17 @@ public class CircuitBreaker5 {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        return restTemplate.getForObject("http://localhost:8083/ratingsdata/hello", String.class);
+        return restTemplate.getForObject("http://localhost:8081/test/greet", String.class);
+    }
+    public static  String printNew(int times){
+        RestTemplate restTemplate=new RestTemplate();
+//        try {
+//            Thread.sleep(4000);
+//            throw new Exception();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        return restTemplate.getForObject("http://localhost:8081/test/greet", String.class);
     }
     public static  String print2(){
         RestTemplate restTemplate=new RestTemplate();
@@ -130,7 +140,7 @@ public class CircuitBreaker5 {
     public static void main(String[] args) {
             //CircuitBreaker5.test();
             //CircuitBreaker5.test2();
-        //CircuitBreaker5.test3();
+        CircuitBreaker5.test3();
 
     }
 }
