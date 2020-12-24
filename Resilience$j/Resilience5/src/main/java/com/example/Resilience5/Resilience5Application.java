@@ -41,7 +41,7 @@ public class Resilience5Application {
 				.automaticTransitionFromOpenToHalfOpenEnabled(true)
 				.failureRateThreshold(50)
 				.permittedNumberOfCallsInHalfOpenState(4)
-				.waitDurationInOpenState(Duration.ofSeconds(10))
+				.waitDurationInOpenState(Duration.ofSeconds(30))
 				.build();
 
 
